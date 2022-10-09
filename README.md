@@ -9,6 +9,8 @@ SCMvL approach systematically composes multi-view from a sample graph engaging a
 ```
 Linux with Python ≥ 3.6
 PyTorch ≥ 1.4.0
+tensorboard
+setuptools==59.5.0
 ```
 
 
