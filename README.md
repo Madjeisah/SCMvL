@@ -43,9 +43,9 @@ Overall, attribute masking performs across various dataset. The result for all b
 | MVGRL    | -           | -           | -           | -  | *89.7 ± 1.1* |
 | JOAO     | 78.07 ± 0.47 | *74.55 ± 0.41* | 77.40 ± 1.15 | - | 87.67 ± 0.79 |
 | Mixup    | **81.0 ± 1.9** | 74.3 ± 3.5 | 76.8 ± 2.9 | - | - |
-| SCMvL+GCN| 72.39 ± 0.16 | 73.38 ± 0.32 | *82.43 ± 0.25* | *82.29 ± 0.52* | 87.02 ± 0.04 |
-| SCMvL+GraphSAGE | 74.95 ± 0.12 | **76.89 ± 0.36** | **85.63 ± 1.5**| **94.00 ± 0.29** | **89.76 ± 0.52** |
-| SCMvL+GIN | 71.45 ± 0.18 | 72.26 ± 0.21 | 76.33 ± 0.26 | 57.10 ± 0.48 | 84.22 ± 0.51 |
+| ***SCMvL+GCN***| 72.39 ± 0.16 | 73.38 ± 0.32 | *82.43 ± 0.25* | *82.29 ± 0.52* | 87.02 ± 0.04 |
+| ***SCMvL+GraphSAGE*** | 74.95 ± 0.12 | **76.89 ± 0.36** | **85.63 ± 1.5**| **94.00 ± 0.29** | **89.76 ± 0.52** |
+| ***SCMvL+GIN*** | 71.45 ± 0.18 | 72.26 ± 0.21 | 76.33 ± 0.26 | 57.10 ± 0.48 | 84.22 ± 0.51 |
 
 The result for all social graph network datasets is a combination of edge perturbation and node attribute masking for view generation.
 |          | COLLAB     |IMDB-M       | IMDB-B      | REDDIT-M5K  | REDDIT-B   |
@@ -62,9 +62,9 @@ The result for all social graph network datasets is a combination of edge pertur
 | MVGRL    | -          | 51.2 ± 0.5  | 74.2 ± 0.7  | -           | 84.5 ± 0.6 |
 | JOAO     | 69.33 ± 0.36 | -         | 70.83 ± 0.25 | 56.03 ± 0.27 | 86.42 ± 1.45 |
 | Mixup    | 77.0 ± 2.2 | 49.9 ± 3.2  | -            |**57.8 ± 1.7**| -      |
-| SCMvL+GCN| 78.34 ± 0.07 | 50.25 ± 0.17 |**76.41 ± 2.31**| 54.2 ± 0.04| 86.7 ± 0.02 |
-|SCMvL+GraphSAGE | **79.27 ± 0.15** | 51.76 ± 0.19 | *76.25 ± 0.93* | 54.2 ± 0.04 | 89.12 ± 2.07 |
-|SCMvL+GIN | 75.8 ± 0.06 | 51.59 ± 0.22 | 71.86 ± 3.1 | **57.86 ± 2.3** | **89.97 ± 2.1** |
+|***SCMvL+GCN***| 78.34 ± 0.07 | 50.25 ± 0.17 |**76.41 ± 2.31**| 54.2 ± 0.04| 86.7 ± 0.02 |
+|***SCMvL+GraphSAGE*** | **79.27 ± 0.15** | 51.76 ± 0.19 | *76.25 ± 0.93* | 54.2 ± 0.04 | 89.12 ± 2.07 |
+|***SCMvL+GIN*** | 75.8 ± 0.06 | 51.59 ± 0.22 | 71.86 ± 3.1 | **57.86 ± 2.3** | **89.97 ± 2.1** |
 
 
 
@@ -72,3 +72,9 @@ The result for all social graph network datasets is a combination of edge pertur
 
 ## Acknowledgements
 Part of this code is inspired by 
+1. [PyTorch Geometric](pytorch-geometric.readthedocs.io/en/latest/notes/batching.html)
+2. [DIG: Dive into Graphs is a turnkey library for graph deep learning research.](https://github.com/divelab/DIG)
+3. [A Simple Framework for Contrastive Learning of Visual Representations](https://arxiv.org/abs/2002.05709)
+4. [Semi-supervised Classification with Graph Convolutional Networks](https://arxiv.org/abs/1609.02907)
+5. [Inductive Representation Learning on Large Graphs](https://arxiv.org/abs/1706.02216)
+6. [How Powerful are Graph Neural Networks?](https://arxiv.org/abs/1810.00826)
