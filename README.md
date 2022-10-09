@@ -15,7 +15,7 @@ setuptools==59.5.0
 
 ## Pre-training
 For pre-training task, run:
-`python execute.py --logdir nci1_ptrain_gcn --dataset nci1 --model gcn --augment_list edge_perturbation  node_attr_mask`
+`python execute.py --logdir pro_ptrain_gcn --dataset proteins --model gcn --augment_list edge_perturbation  node_attr_mask`
 
 The model options are gcn, graphsage and gin.
 
