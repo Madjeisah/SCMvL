@@ -1,10 +1,5 @@
-"""
-USAGE: python3 execute.py --logdir redit_ptrain_gcn --dataset reddit_multi --model gcn --augment_list edge_perturbation  node_attr_mask
-
-"""
 import os.path as osp
 import torch
-# import argparse
 import numpy as np
 import torch.nn as nn
 from tqdm import trange
@@ -27,9 +22,7 @@ def set_seed(seed):
 	torch.manual_seed(seed)
 	torch.cuda.manual_seed(seed)
 	torch.backends.cudnn.deterministic = True
-	torch.cuda.manual_seed_all(seed)  # if you are using multi-GPU.
 	torch.backends.cudnn.benchmark = False
-
 
 class Params:
 
@@ -122,13 +115,6 @@ def main(args):
 		print("Train Epoch Loss: {:.3f}".format(train_loss))
 		logger.add_scalar("Train Loss", train_loss, epoch)
 		train_losses.append(train_loss)
-		"""
-		with open('pro_0.001.txt', 'w') as f:
-			for loss in train_losses:
-        			f.write(str("{:.3f}".format(loss)))
-        			f.write('\n')
-        		#f.close()
-        	"""
 
 		val_loss = run(args, epoch, "val", val_loader, model, optimizer)
 		print("Val Epoch Loss: {:.3f}".format(val_loss))
@@ -147,16 +133,6 @@ def main(args):
 
 	best_epoch, best_train_loss, best_val_loss = model.load_checkpoint(os.path.join("ckpt", args.save), optimizer)
 	model.eval()
-
-	# Plot the training and validation losses in every epoch.
-	plt.plot(train_losses, label='Train Loss')
-	plt.plot(val_losses, label='Valid Loss', linestyle='dashed')
-	plt.xlabel('Pre-training epochs', fontsize=14)
-	#plt.ylim((0, 2.5))
-	plt.legend(fontsize=14)
-	plt.grid(True)
-	# plt.savefig('saved/{}/loss_pretrain{}.pdf'.format(load_path, dropout))
-	plt.show()
 
 	test_loss = run(args, best_epoch, "test", test_loader, model, optimizer)
 	print("Test Loss at epoch {}: {:.3f}".format(best_epoch, test_loss))
