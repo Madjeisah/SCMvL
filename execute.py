@@ -44,7 +44,6 @@ class Params:
 	def __str__(self):
 		return ("Pre-train setup:\n" + "".join(["-"] * 50) + "\n" + "\n".join(["{:<18} -------> {}".format(k, v) for k, v in vars(self.prm).items()]) + "\n" + "".join(["-"] * 50) + "\n")
 
-
 def run(args, epoch, mode, dataloader, model, optimizer):
 	if mode == "train":
 		model.train()
@@ -83,7 +82,6 @@ def run(args, epoch, mode, dataloader, model, optimizer):
 	epoch_loss = sum(losses) / len(losses)
 	return epoch_loss
 
-
 def main(args):
 	dataset, input_dim, num_classes = load_dataset(args.dataset)
 
@@ -102,7 +100,6 @@ def main(args):
 
 	optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
 	# optimizer = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=5e-3)
-
 
 	best_train_loss, best_val_loss = float("inf"), float("inf")
 
