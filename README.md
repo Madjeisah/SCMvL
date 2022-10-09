@@ -13,6 +13,12 @@ tensorboard
 setuptools==59.5.0
 ```
 
+## Test
+For testing purposes, you can run this script. `python classification.py --load pro_ptrain_gcn --logdir pro_ftune_gcn --dataset proteins --model gcn`. 
+We have provided a pre-train embedding on the protein dataset for testing purposes to prevent one from going through the prolonged training time. 
+
+For reproducibility, follow the instructions below.  
+
 ## Pre-training
 For pre-training task, run:
 `python execute.py --logdir pro_ptrain_gcn --dataset proteins --model gcn --augment_list edge_perturbation  node_attr_mask`
