@@ -79,10 +79,10 @@ The result for all social graph network datasets is a combination of edge pertur
 ## Acknowledgements
 Part of this code is inspired by 
 1. [PyTorch Geometric](pytorch-geometric.readthedocs.io/en/latest/notes/batching.html)
-2. [DIG: Dive into Graphs is a turnkey library for graph deep learning research.](https://github.com/divelab/DIG)
-3. [A Simple Framework for Contrastive Learning of Visual Representations](https://arxiv.org/abs/2002.05709)
-4. [Semi-supervised Classification with Graph Convolutional Networks](https://arxiv.org/abs/1609.02907)
-5. [Inductive Representation Learning on Large Graphs](https://arxiv.org/abs/1706.02216)
-6. [How Powerful are Graph Neural Networks?](https://arxiv.org/abs/1810.00826)
+2. DIG: Dive into Graphs is a turnkey library for graph deep learning research. [DIG](https://github.com/divelab/DIG)
+3. A Simple Framework for Contrastive Learning of Visual Representations [SimCLR](https://arxiv.org/abs/2002.05709)
+4. Semi-supervised Classification with Graph Convolutional Networks [GCN](https://arxiv.org/abs/1609.02907)
+5. Inductive Representation Learning on Large Graphs [GraphSAGE](https://arxiv.org/abs/1706.02216)
+6. How Powerful are Graph Neural Networks? [GIN](https://arxiv.org/abs/1810.00826)
 7. Diffusion on the given graph or batched graphs, used in [MVGRL](https://arxiv.org/pdf/2006.05582v1.pdf)
 8. [Self-Supervised Learning For Graphs](https://medium.com/stanford-cs224w/self-supervised-learning-for-graphs-963e03b9f809)
