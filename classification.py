@@ -11,30 +11,19 @@ from data_loader import *
 from net_model import *
 from hparams import Classi_Hparams
 
-
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 hparams = Classi_Hparams()
 
-def set_seed(seed):
-	
-	# set random seed
-	SEED = 0
-	torch.manual_seed(SEED)
-	if torch.cuda.is_available():
-		torch.cuda.manual_seed(SEED)
-	np.random.seed(SEED)  # Numpy module.
-	random.seed(SEED)  # Python random module.
-	torch.backends.cudnn.deterministic = True
-	torch.backends.cudnn.benchmark = False
-	
-	
-	# set random seed
-	SEED = 0
-	torch.manual_seed(SEED)
-	if torch.cuda.is_available():
-		torch.cuda.manual_seed(SEED)
-	np.random.seed(SEED)  # Numpy module.
-	random.seed(SEED)  # Python random module.
+# set random seed
+SEED = 0
+torch.manual_seed(SEED)
+if torch.cuda.is_available():
+    torch.cuda.manual_seed(SEED)
+np.random.seed(SEED)  # Numpy module.
+random.seed(SEED)  # Python random module.
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
 class Params:
@@ -180,7 +169,6 @@ def main(args):
 
 if __name__ == "__main__":
 
-	set_seed(0)
 	args = Params()
 	print(args)
 
