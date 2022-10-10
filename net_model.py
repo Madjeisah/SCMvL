@@ -13,8 +13,6 @@ from torch_geometric.nn import GCNConv, GINConv, SAGEConv, global_add_pool, glob
 
 class Encoder(torch.nn.Module):
 	"""
-	We adapt part of the code from https://github.com/divelab/DIG.
-	
 	Args:
 		feat_dim (int): The dimension of input node features.
 		hidden_dim (int): The dimension of node-level (local) embeddings. 
