@@ -84,4 +84,5 @@ Part of this code is inspired by
 4. [Semi-supervised Classification with Graph Convolutional Networks](https://arxiv.org/abs/1609.02907)
 5. [Inductive Representation Learning on Large Graphs](https://arxiv.org/abs/1706.02216)
 6. [How Powerful are Graph Neural Networks?](https://arxiv.org/abs/1810.00826)
-7. [Self-Supervised Learning For Graphs](https://medium.com/stanford-cs224w/self-supervised-learning-for-graphs-963e03b9f809)
+7. Diffusion on the given graph or batched graphs, used in [MVGRL](https://arxiv.org/pdf/2006.05582v1.pdf)
+8. [Self-Supervised Learning For Graphs](https://medium.com/stanford-cs224w/self-supervised-learning-for-graphs-963e03b9f809)
