@@ -34,7 +34,7 @@ For downstrean task, run:
 `python classification.py --load pro_ptrain_gcn --logdir pro_ftune_gcn --dataset proteins --model gcn`
 
 ### Graph Classification Results
-Overall, attribute masking performs across various dataset. The result for all biochemical molecular graph network datasets is a combination of random walk and node attribute masking for view generation.
+Overall, attribute masking performs across various dataset. The result for all biochemical molecular graph network datasets is a combination of random walk and node attribute masking for view generation. We perform 10 runs to evaluate the model’s performance and report the mean accuracy and standard deviation. The best performances are highlighted in bold and italicized as the second best.
 |          | NCI1       | PROTEINS   | D&D        | ENZYMES    | MUTAG      |
 | :---     | :---:      | :---:      | :---:      |   :---:    |     :---:  |
 | GCN      | 69.8 ± 2.2 | 72.8 ± 3.7 | 71.4 ± 4.5 | 65.2 ± 6.4 | 85.6 ± 5.8 | 
