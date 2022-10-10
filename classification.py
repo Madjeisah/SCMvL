@@ -16,15 +16,25 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 hparams = Classi_Hparams()
 
 def set_seed(seed):
-	"""
-	Utility function to set seed values for RNG for various modules
-	"""
-	np.random.seed(seed)
-	torch.manual_seed(seed)
-	torch.cuda.manual_seed(seed)
+	
+	# set random seed
+	SEED = 0
+	torch.manual_seed(SEED)
+	if torch.cuda.is_available():
+		torch.cuda.manual_seed(SEED)
+	np.random.seed(SEED)  # Numpy module.
+	random.seed(SEED)  # Python random module.
 	torch.backends.cudnn.deterministic = True
-	torch.cuda.manual_seed_all(seed)  # if you are using multi-GPU.
 	torch.backends.cudnn.benchmark = False
+	
+	
+	# set random seed
+	SEED = 0
+	torch.manual_seed(SEED)
+	if torch.cuda.is_available():
+		torch.cuda.manual_seed(SEED)
+	np.random.seed(SEED)  # Numpy module.
+	random.seed(SEED)  # Python random module.
 
 
 class Params:
