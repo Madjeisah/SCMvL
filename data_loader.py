@@ -140,7 +140,6 @@ def build_classification_loader(args, dataset, subset):
 class dataset_and_aug(Dataset):
 	"""
 	Dataset class that returns a graph and its augmented view in get() call.
-	Augmentations are applied sequentially based on the augment_list.
 	"""
 
 	def __init__(self, dataset, subset, augment_list):
@@ -167,10 +166,10 @@ class dataset_and_aug(Dataset):
 
 	def get_positive_sample(self, old_graph):
 		"""
-		Possible augmentations include the following:
+		Our augmentations techniques for view generation includes:
+			node_dropping()
 			edge_perturbation()
 			diffusion()
-			node_dropping()
 			random_walk_subgraph()
 			node_attr_mask()
 		"""
@@ -191,8 +190,7 @@ class dataset_and_aug(Dataset):
 
 class PairData(Data):
 	"""
-	Utility function to return a pair of graphs in dataloader.
-	Adapted from https://pytorch-geometric.readthedocs.io/en/latest/notes/batching.html
+	Function to return graph pair in dataloader.
 	"""
 
 	def __init__(self, edge_index_anchor = None, x_anchor = None, edge_index_pos = None, x_pos = None):
