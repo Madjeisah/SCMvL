@@ -5,7 +5,6 @@ from torch_geometric.data import Batch, Data
 from sklearn.preprocessing import MinMaxScaler
 from torch_geometric.utils import dense_to_sparse, to_dense_adj , subgraph
 
-
 '''
 Set variables for various augmentation methods
 '''
@@ -62,7 +61,7 @@ class NodeDropping():
         elif isinstance(data, Data):
             return self.do_trans(data)
 
-        
+
 class NodeAttrMask():
     """
     Node attribute masking on the given graph or batched graphs.
