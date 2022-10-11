@@ -62,6 +62,7 @@ class NodeDropping():
         elif isinstance(data, Data):
             return self.do_trans(data)
 
+        
 class NodeAttrMask():
     """
     Node attribute masking on the given graph or batched graphs.
@@ -262,7 +263,6 @@ class Diffusion():
             return self.do_trans(data)
             
             
-
 class RWSample():
     """
     Subgraph sampling based on random walk on the given graph or batched graphs.
