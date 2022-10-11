@@ -6,6 +6,19 @@ from sklearn.preprocessing import MinMaxScaler
 from torch_geometric.utils import dense_to_sparse, to_dense_adj , subgraph
 
 
+'''
+Set variables for various augmentation methods
+'''
+# Ratio of node attributes to be masked, dropped.
+# Percentage of edges to add or drop.
+# The percentage of nodes to sample from the graph.
+ratio=0.1 
+mask_mean=0.5  # Mean of the Gaussian distribution to generate masking.  
+mask_std=0.5   # Standard deviation of the distribution to generate masking.
+alpha=0.2      # Teleportation probability in a random walk.
+timer=5        # Diffusion time
+
+
 class NodeDropping():
     """
     Uniformly drops node on the given graph or batched graphs.
@@ -15,7 +28,7 @@ class NodeDropping():
         ratio (float, optinal): Ratio of nodes to be dropped. (default: :obj:`0.1`)
     """
 
-    def __init__(self, ratio=0.1):
+    def __init__(self, ratio=ratio):
         self.ratio = ratio
 
     def __call__(self, data):
@@ -67,7 +80,7 @@ class NodeAttrMask():
             Must be non-negative. (default: :obj:`0.5`)
     """
 
-    def __init__(self, mode='whole', mask_ratio=0.1, mask_mean=0.5, mask_std=0.5, return_mask=False):
+    def __init__(self, mode='whole', mask_ratio=ratio, mask_mean=mask_mean, mask_std=mask_std, return_mask=False):
         self.mode = mode
         self.mask_ratio = mask_ratio
         self.mask_mean = mask_mean
@@ -144,7 +157,7 @@ class EdgePerturbation():
         ratio (float, optional): Percentage of edges to add or drop. (default: :obj:`0.1`)
     """
 
-    def __init__(self, add=True, drop=False, ratio=0.1):
+    def __init__(self, add=True, drop=False, ratio=ratio):
         self.add = add
         self.drop = drop
         self.ratio = ratio
@@ -175,9 +188,7 @@ class EdgePerturbation():
     def views_fn(self, data):
         """
         Method to be called when :class:`EdgePerturbation` object is called.
-        Args:
-            data (:class:`torch_geometric.data.Data`): The input graph or batched graphs.
-        :rtype: :class:`torch_geometric.data.Data`.
+
         """
         if isinstance(data, Batch):
             dlist = [self.do_trans(d) for d in data.to_data_list()]
@@ -202,7 +213,7 @@ class Diffusion():
             (default: :obj:`True`)
     """
 
-    def __init__(self, mode="ppr", alpha=0.2, t=5, add_self_loop=True):
+    def __init__(self, mode="ppr", alpha=alpha, t=timer, add_self_loop=True):
         self.mode = mode
         self.alpha = alpha
         self.t = t
@@ -242,10 +253,6 @@ class Diffusion():
         """
         Method to be called when :class:`Diffusion` object is called.
 
-        Args:
-            data (:class:`torch_geometric.data.Data`): The input graph or batched graphs.
-
-        :rtype: :class:`torch_geometric.data.Data`.
         """
 
         if isinstance(data, Batch):
@@ -268,7 +275,7 @@ class RWSample():
             (default: :obj:`False`)
     """
 
-    def __init__(self, ratio=0.1, add_self_loop=False):
+    def __init__(self, ratio=ratio, add_self_loop=False):
         self.ratio = ratio
         self.add_self_loop = add_self_loop
     
@@ -312,11 +319,7 @@ class RWSample():
     def views_fn(self, data):
         """
         Method to be called when :class:`RandomWalkSample` object is called.
-        
-        Args:
-            data (:class:`torch_geometric.data.Data`): The input graph or batched graphs.
-            
-        :rtype: :class:`torch_geometric.data.Data`.  
+  
         """
 
         if isinstance(data, Batch):
