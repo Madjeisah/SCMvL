@@ -14,14 +14,14 @@ setuptools==59.5.0
 ```
 
 ## Test
-For testing purposes, you can run this script. `python classification.py --load pro_ptrain_gcn --logdir pro_ftune_gcn --dataset proteins --model gcn`. 
+For testing purposes, you can run this script. `python classification.py --load pro_ptrain_gcn --dataset proteins --model gcn`. 
 We have provided a pre-train embedding on the protein dataset for testing purposes to prevent one from going through the prolonged training time. 
 
 For reproducibility, follow the instructions below.  
 
 ## Pre-training
 For pre-training task, run:
-`python execute.py --logdir pro_ptrain_gcn --dataset proteins --model gcn --augment_list edge_perturbation  node_attr_mask`
+`python execute.py --logdir <pre-train embedding> --dataset <dataset> --model <GNN model> --augment_list <ugmentation choice>  <augmentation choice>`
 
 The model options are gcn, graphsage and gin.
 
@@ -31,7 +31,7 @@ Augmentation choices are "node_dropping", "node_attr_mask", "edge_perturbation",
 
 ## Downstream Tasks
 For downstrean task, run:
-`python classification.py --load pro_ptrain_gcn --logdir pro_ftune_gcn --dataset proteins --model gcn`
+`python classification.py --load <pre-train embedding> --dataset <dataset> --model <GNN model>`
 
 ### Graph Classification Results
 Overall, attribute masking performs across various dataset. The result for all biochemical molecular graph network datasets is a combination of random walk and node attribute masking for view generation. We perform 10 runs to evaluate the model’s performance and report the mean accuracy and standard deviation. The best performances are highlighted in bold and italicized as the second best.
