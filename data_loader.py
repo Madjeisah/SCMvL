@@ -83,7 +83,7 @@ def load_dataset(name, expand_features=True):
 	elif name == "imdb_binary":
 		dataset = TUDataset(root="datasets/TUDataset/", name="IMDB-BINARY", use_node_attr=True)
 	elif name == "imdb_multi":
-		dataset = TUDataset(root="/datasets/TUDataset/", name="IMDB-MULTI", use_node_attr=True)
+		dataset = TUDataset(root="datasets/TUDataset/", name="IMDB-MULTI", use_node_attr=True)
 	elif name == "reddit_binary":
 		dataset = TUDataset(root="datasets/TUDataset/", name="REDDIT-BINARY", use_node_attr=True)
 	elif name == "reddit_multi":
