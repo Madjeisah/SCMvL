@@ -38,13 +38,6 @@ class Hparams:
     			help="the fraction of pre-training samples")		
 
 
-    """
-    # Classification Task on Graphs
-    parser.add_argument("--load", dest="load", action="store", help="Only when evaluating the best epoch")
-    parser.add_argument("--classi_epochs", dest="classi_epochs", action="store", default=200, type=int)
-    parser.add_argument("--runs", dest="runs", action="store", default=10, type=float, help="Number of experiments to conduct")
-    """
-
 class Classi_Hparams:
     parser = argparse.ArgumentParser(description="SCMvL for Graph Classifacation")
      
@@ -73,11 +66,11 @@ class Classi_Hparams:
     # Datasets		
     parser.add_argument("--dataset", dest="dataset", action="store", default="nci1", type=str,
 			help="nci1, proteins, dd, enzymes, mutag, collab, imdb_multi, imdb_binary, reddit_multi, reddit_binary")		
-    parser.add_argument("--train_data_percent", dest="train_data_percent", action="store", default=1.0, type=float,
+    parser.add_argument("--train_data_percent", dest="train_data_percent", action="store", default=2.0, type=float,
     			help="the fraction of pre-training samples")		
 
     # Classification Task on Graphs
-    parser.add_argument("--load", dest="load", action="store", help="Only when evaluating the best epoch")
+    parser.add_argument("--load", dest="load", action="store", help="For evaluation")
     parser.add_argument("--runs", dest="runs", action="store", default=10, type=float, help="Number of experiments to conduct")
 								
   
