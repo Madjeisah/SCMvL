@@ -31,12 +31,19 @@ class Params:
 	
 		self.parser = hparams.parser
 		self.parse()
+		self.save_dir()
 
 	def parse(self):
 		self.prm = self.parser.parse_args()
+		
+	def save_dir(self):
+		if not os.path.isdir(os.path.join("executes", self.prm.save)):
+			os.makedirs(os.path.join("executes", self.prm.save))
+		if not os.path.isdir(os.path.join("ckpt", self.prm.save)):
+			os.makedirs(os.path.join("ckpt", self.prm.save))
 
 	def __str__(self):
-		return ("Classification setup:\n" + "".join(["-"] * 45) + "\n" + "\n".join(["{:<18} -------> {}".format(k, v) for k, v in vars(self.prm).items()]) + "\n" + "".join(["-"] * 45) + "\n")
+		return ("Classification setup:\n" + "".join(["-"] * 45) + "\n" + "\n".join(["{:<18} |-------> {}".format(k, v) for k, v in vars(self.prm).items()]) + "\n" + "".join(["-"] * 45) + "\n")
 
 
 def run(args, epochs, mode, dataloader, model, optimizer):
@@ -103,11 +110,11 @@ def main(args):
 	model = model.to(device)
 
 	optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
-
 	best_train_loss, best_val_loss = float("inf"), float("inf")
+	logger = SummaryWriter(os.path.join("executes", args.save))
 
+	best_valid_epoch = 0
 	test_accs = []
-
 	for r in range(1, args.runs):
 		print('')
 		print(f'Run {r:02d}:')
@@ -119,17 +126,32 @@ def main(args):
 		for epoch in range(args.epochs):
 			train_loss, train_acc = run(args, epoch, "train", train_loader, model, optimizer)
 			print("Train Epoch Loss: {}, Accuracy: {}".format(train_loss, train_acc))
+			logger.add_scalar("Train Loss", train_loss, epoch)
 
 			val_loss, val_acc = run(args, epoch, "val", val_loader, model, optimizer)
 			print("Val Epoch Loss: {}, Accuracy: {}".format(val_loss,val_acc))
-
-		test_accs.append(train_acc)
+			logger.add_scalar("Val Loss", val_loss, epoch)
+			
+			# save best model 
+			is_best_loss = False
+			if val_loss < best_val_loss:
+				best_epoch, best_train_loss, best_val_loss, is_best_loss = epoch, train_loss, val_loss, True
+				best_valid_epoch = epoch
+			model.save_checkpoint(os.path.join("ckpt", args.save), optimizer, epoch, best_train_loss, best_val_loss, is_best_loss)
+			
+		# load best model for evaluation
+		best_epoch, best_train_loss, best_val_loss = model.load_checkpoint(os.path.join("ckpt", args.save), optimizer)
+		model.eval()
+		
+		t_loss, t_accuracy = run(args, best_epoch, "test", test_loader, model, optimizer)
+		print("Test Epoch Loss: {}, Accuracy: {}".format(t_loss, t_accuracy))
+		test_accs.append(t_accuracy)
 
 	test_acc = torch.tensor(test_accs)
 	print('')
-	print('====================================')
+	print('=====================================')
 	print(f'Overall Test Accuracy: {test_acc.mean():.4f} ± {test_acc.std():.3f}') 
-	print('====================================')    
+	print('=====================================')    
 	print('')
 	print('')
 
