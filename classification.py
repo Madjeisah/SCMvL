@@ -125,11 +125,11 @@ def main(args):
 
 		for epoch in range(args.epochs):
 			train_loss, train_acc = run(args, epoch, "train", train_loader, model, optimizer)
-			print("Train Epoch Loss: {}, Accuracy: {}".format(train_loss, train_acc))
+			print(f"Train Epoch Loss: {train_loss:.4f}, Accuracy: {train_acc:.4f}")
 			logger.add_scalar("Train Loss", train_loss, epoch)
 
 			val_loss, val_acc = run(args, epoch, "val", val_loader, model, optimizer)
-			print("Val Epoch Loss: {}, Accuracy: {}".format(val_loss,val_acc))
+			print(f"Val Epoch Loss: {val_loss:.4f}, Accuracy: {val_acc:.4f}")
 			logger.add_scalar("Val Loss", val_loss, epoch)
 			
 			# save best model 
@@ -144,7 +144,7 @@ def main(args):
 		model.eval()
 		
 		t_loss, t_accuracy = run(args, best_epoch, "test", test_loader, model, optimizer)
-		print("Test Epoch Loss: {}, Accuracy: {}".format(t_loss, t_accuracy))
+		print(f"Test Epoch Loss: {t_loss:.4f}, Accuracy: {t_accuracy:.4f}")
 		test_accs.append(t_accuracy)
 
 	test_acc = torch.tensor(test_accs)
