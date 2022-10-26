@@ -75,7 +75,7 @@ The result for all social graph network datasets is a combination of edge pertur
 
 
 ## Citing SCMvL
-If you make use SCMvL in your research, please cite it using the following entry
+If you make use SCMvL in your research, please cite it using the following entry:
 ## Acknowledgements
 Part of this code is inspired by 
 1. [PyTorch Geometric](pytorch-geometric.readthedocs.io/en/latest/notes/batching.html)
