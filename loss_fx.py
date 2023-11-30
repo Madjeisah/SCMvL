@@ -53,7 +53,7 @@ class infonce(nn.Module):
 		Args:
 			embed_anchor, embed_positive: Tensor of shape [batch_size, embed_dim]
 			tau: Float. Usually in (0,1].
-			norm: Boolean. Whether to apply normlization.
+			norm: Boolean. Whether to apply normalization.
 		"""
 
 		batch_size = embed_anchor.shape[0]
